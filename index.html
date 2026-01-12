@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Neha 💖 Christmas Gift</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  overflow:hidden;
+}
+
+/* COMMON PAGE */
+.page{
+  width:100vw;
+  height:100vh;
+  display:none;
+  position:absolute;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  color:white;
+  padding:40px;
+}
+
+.active{display:flex;}
+
+/* CHRISTMAS GLOW BACKGROUNDS */
+#page1{background:radial-gradient(circle,#ff416c,#ff4b2b);}
+#page2{background:linear-gradient(135deg,#11998e,#38ef7d);}
+#page3{background:linear-gradient(120deg,#8e2de2,#4a00e0);}
+#page4{background:radial-gradient(circle,#f7971e,#ffd200);}
+
+/* PAGE ENTRY ANIMATIONS */
+.fade{animation:fade 2s;}
+.slide{animation:slide 2s;}
+.zoom{animation:zoom 2s;}
+.rotate{animation:rotate 2s;}
+
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+@keyframes slide{from{transform:translateY(120px);opacity:0;}to{opacity:1;}}
+@keyframes zoom{from{transform:scale(0);opacity:0;}to{opacity:1;}}
+@keyframes rotate{from{transform:rotate(-360deg);opacity:0;}to{opacity:1;}}
+
+/* NEHAA MAGIC */
+.neha{
+  font-size:26px;
+  letter-spacing:14px;
+  animation:grow 4s forwards;
+}
+
+@keyframes grow{
+  0%{transform:scale(0);opacity:0;}
+  100%{
+    transform:scale(3);
+    opacity:1;
+    text-shadow:
+      0 0 15px red,
+      0 0 25px gold,
+      0 0 35px lime,
+      0 0 45px cyan,
+      0 0 55px violet;
+  }
+}
+
+/* NEXT BUTTON (SHINING) */
+.next{
+  margin-top:40px;
+  padding:16px 48px;
+  font-size:21px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  color:white;
+  animation:shine 1.8s infinite alternate;
+}
+
+@keyframes shine{
+  0%{box-shadow:0 0 10px white;}
+  100%{box-shadow:0 0 35px white;}
+}
+
+/* YES / NO */
+.choice{
+  padding:16px 40px;
+  margin:20px;
+  font-size:20px;
+  border-radius:45px;
+  border:none;
+  cursor:pointer;
+  color:white;
+}
+
+.yes{
+  background:linear-gradient(45deg,#56ab2f,#a8e063);
+  box-shadow:0 0 30px #9aff57;
+}
+
+.no{
+  background:linear-gradient(45deg,#cb2d3e,#ef473a);
+  box-shadow:0 0 30px #ff6b6b;
+}
+
+/* FLOATING DECORATIONS */
+.float{
+  position:absolute;
+  animation:float 8s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+  100%{transform:translateY(-10vh) rotate(360deg);opacity:1;}
+}
+
+/* SNOW */
+.snow{
+  position:absolute;
+  top:-10px;
+  color:white;
+  animation:snowfall 10s linear infinite;
+}
+
+@keyframes snowfall{
+  0%{transform:translateY(-10vh);}
+  100%{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active fade" id="page1">
+  <div class="neha">NEHAA</div>
+  <p style="margin-top:70px;font-size:22px;">
+    🎄🦋 A Christmas surprise just for you 🦋🎄
+  </p>
+  <button class="next" style="background:#ff4b2b;" onclick="nextPage(1)">NEXT ✨</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page slide" id="page2">
+  <h1>Thank You 🎅💖</h1>
+  <p style="font-size:22px;margin-top:20px;">
+    Thanks for reading the previous gift 🎄🌸<br><br>
+    Sach bolu Neha, jab tumne story mein mera naam mention kiya,
+    I literally can’t explain how happy I was 🥹✨<br><br>
+    Hum boys ko zyada kuch nahi chahiye,
+    bas thoda sa attention 🤍🎁<br><br>
+    And trust me, that made my day.
+  </p>
+  <button class="next" style="background:#11998e;" onclick="nextPage(2)">NEXT 🎄</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page zoom" id="page3">
+  <h1>One Small Question 🎄</h1>
+  <p style="font-size:24px;margin-top:30px;">
+    Will you be my <b>permanent friend</b>? 🦋💙<br><br>
+    No pressure at all 🤍<br>
+    I just wish you’ll say yesss 😊✨
+  </p>
+  <button class="next" style="background:#8e2de2;" onclick="nextPage(3)">NEXT ❄️</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page rotate" id="page4">
+  <h1>🎁 Final Page 🎁</h1>
+  <p style="font-size:22px;margin:20px;">
+    You are the most beautiful girl I have ever seen ✨<br>
+    Always keep smiling like this 😄🌸<br><br>
+    Will you be my friend?
+  </p>
+
+  <div>
+    <button class="choice yes" onclick="yes()">YES 🎄</button>
+    <button class="choice no" onclick="no()">NO 💙</button>
+  </div>
+
+  <p id="result" style="margin-top:30px;font-size:22px;"></p>
+</div>
+
+<script>
+function nextPage(n){
+  document.getElementById("page"+n).classList.remove("active");
+  document.getElementById("page"+(n+1)).classList.add("active");
+  decorate();
+}
+
+function decorate(){
+  let items=["🌸","🦋","✨","🎄","🎅","🎁","⭐","❄️","🍭","🔔"];
+  for(let i=0;i<35;i++){
+    let e=document.createElement("div");
+    e.className="float";
+    e.innerHTML=items[Math.floor(Math.random()*items.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.fontSize=(18+Math.random()*30)+"px";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),8000);
+  }
+}
+
+decorate();
+
+/* Snow */
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄️";
+  s.style.left=Math.random()*100+"vw";
+  s.style.fontSize=(12+Math.random()*20)+"px";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
+},300);
+
+function yes(){
+  document.getElementById("result").innerHTML=
+  "🎄🌸 Thank you for choosing me 🌸🎄<br>I respect you a lot 🤍✨";
+  decorate();
+}
+
+function no(){
+  document.getElementById("result").innerHTML=
+  "💙 I hoped you’d choose YES,<br>but vibes take time to match.<br>I respect your decision completely 🤍";
+}
+</script>
+
+</body>
+</html>
